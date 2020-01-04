@@ -1719,8 +1719,8 @@ table td[class*=col-],table th[class*=col-] {
     }
 
     .table-responsive>.table>thead>tr>th,.table-responsive>.table>tbody>tr>th,.table-responsive>.table>tfoot>tr>th,.table-responsive>.table>thead>tr>td,.table-responsive>.table>tbody>tr>td,.table-responsive>.table>tfoot>tr>td {
-        white-space: nowrap;
-    }
+/*        white-space: nowrap;
+*/    }
 
     .table-responsive>.table-bordered {
         border: 0;
@@ -2130,7 +2130,7 @@ textarea.input-lg,select[multiple].input-lg {
     color: #fff;
     background-color: #333;
 }
-.btn:hover .fa{color:#fff;}
+
 
 /*.btn-primary {
  	background: #eeedeb; 
@@ -2273,8 +2273,7 @@ textarea.input-lg,select[multiple].input-lg {
 }
 
 .btn-link {
-    color: #428bca;
-    font-weight: 500;
+    color: #808080;
     cursor: pointer;
     border-radius: 0;
 }
@@ -3177,9 +3176,9 @@ input[type=submit].btn-block,input[type=reset].btn-block,input[type=button].btn-
     height: 0;
     margin-left: 2px;
     vertical-align: middle;
-    border-top: 4px solid;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
+    border-top: 6px solid;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
 }
 
 .dropdown {
@@ -3572,7 +3571,6 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 }
 
 .input-group-addon,.input-group-btn {
-    width: 1%;
     white-space: nowrap;
     vertical-align: middle;
 }
@@ -3627,6 +3625,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
     position: relative;
     font-size: 0;
     white-space: nowrap;
+	display:inline-block;
 }
 
 .input-group-btn>.btn {
@@ -3707,19 +3706,20 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 .nav-tabs>li>a {
     margin-right: 5px;
     line-height: 1.428571429;   
-	background:#fff;
+	border:1px solid #ddd;
 	cursor:pointer;
 	color: #313743;
 	text-transform:uppercase;
 	font-family:'Arimo',arial;	
-	border: 1px solid transparent;
+	margin:0 15px -1px 0;
 }
 
 .nav-tabs>li.active>a,.nav-tabs>li.active>a:hover,.nav-tabs>li.active>a:focus,.nav-tabs>li>a:hover {  
-    background: #F5F5F5;   
+    background: #ef8829 ;   
 	border-style:solid solid solid;
 	border-width:1px 1px 1px;
-	border-color:#ddd #ddd transparent;
+	color:#fff;
+	border-color:#EF8829;
 }
 
 .nav-tabs.nav-justified {
@@ -5170,7 +5170,7 @@ a.list-group-item-danger.active,a.list-group-item-danger.active:hover,a.list-gro
 
 .panel-heading {
     padding: 10px 15px;
-    border-bottom: 1px solid transparent;    
+    border-bottom: none;    
 }
 .checkout-cart .panel-heading {
 	padding: 0;
@@ -5198,7 +5198,7 @@ a.list-group-item-danger.active,a.list-group-item-danger.active:hover,a.list-gro
 
 .panel-footer {
     padding: 10px 0;
-    background-color: #f5f5f5;       
+    background-color: transparent;       
 	text-align:left;
 }
 

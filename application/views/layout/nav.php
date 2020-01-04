@@ -1,157 +1,69 @@
-<!--
-NAVBAR
-=============================================== -->
-<nav class="navbar navbar-default">
-
-	<div class="container">
-
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">
-				<img src="images/main-brand.png" alt="" class="brand">
-			</a>
-		</div>
-
-		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-			<!-- Top panel / search / phone -->
-			<div class="top-panel">
-
-				<div class="phone text-blue">
-					<i class="icofont icofont-phone-circle"></i>
-					+62
-				</div>
-				<div class="btn-cols">
-
-					<ul class="list-btn-group">
-						<li>
-							<a href="#" data-toggle="modal" data-target="#myModal">
-								Daftar
-							</a>
-						</li>
-						<li>
-							<a href="register-page.html">
-								<b>Login</b>
-							</a>
-						</li>
-					</ul>
+<header>
+	<div class="header-top">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="top-right pull-right">
+						<div id="top-links" class="nav pull-right">
+							<ul class="list-inline">
+								<li class="dropdown"><a href="#" title="My Account" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-user"></i><span>My Account</span> <span class="caret"></span></a>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<?php if (isset($this->session->uid)){ ?>
+											<li><a href="<?= base_url().'logout' ?>">Keluar Akun</a></li>
+										<?php }else {?>
+										<li><a href="<?= base_url().'register' ?>">Register</a></li>
+										<li><a href="<?= base_url().'login' ?>">Login</a></li>
+									<?php } ?>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
-			<?php if (isset($this->session->uid)) {?>
-				<ul class="nav navbar-nav navbar-right info-panel">
-					<!-- Profile -->
-					<li class="profile">
-						<span class="wrap">
-
-							<!-- Image -->
-							<span class="image bg-white">
-
-								<!-- New message badge -->
-								<span class="badge bg-blue hidden-xs hidden-sm">5</span>
-
-								<span class="icon">
-									<i class="icofont icofont-user-alt-4 text-blue"></i>
-								</span>
-
-								<!--img src="images/profile/profile-img.jpg" alt=""-->
-							</span>
-
-							<!-- Info -->
-							<span class="info">
-								<!-- Name -->
-								<span class="name text-uppercase">John Doe</span>
-								<a href="#">edit profile</a>
-							</span>
-						</span>
-					</li>
-
-					<!-- Cart -->
-					<li class="cart">
-
-						<a href="#" class="cart-icon hidden-xs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-
-							<span class="badge bg-blue">1</span>
-
-							<i class="icofont icofont-cart-alt"></i>
-						</a>
-
-						<a href="#" class="visible-xs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							<i class="icofont icofont-cart-alt"></i>
-							Shopping cart
-						</a>
-
-						<!-- Dropdown items list -->
-						<ul class="dropdown-menu">
-							<!-- Item -->
-							<li>
-								<div class="wrap">
-
-									<!-- Image -->
-									<div class="image">
-										<img src="<?= base_url().'asset/images/shop/img-01.jpg' ?>" alt="">
-									</div>
-
-									<!-- Caption -->
-									<div class="caption">
-										<span class="comp-header st-1 text-uppercase">
-											T-SHIPT
-											<span>
-												MEN COLLECTION
-											</span>
-											<span>
-												FAKE BRAND
-											</span>
-										</span>
-
-										<span class="price">
-											<span class="text-grey-dark">$</span>
-											257 <small class="text-grey-dark">.00</small>
-										</span>
-									</div>
-
-									<!-- Remove btn -->
-									<span class="remove-btn bg-blue">
-										<i class="icofont icofont-bucket"></i>
-									</span>
-								</div>
-							</li>
-							<li class="more-btn sdw">
-								<a href="card-page-step-1.html" class="btn-material btn-primary">
-									View order <i class="icofont icofont-check-circled"></i>
-								</a>
-							</li>
-
-
-						</ul>
-					</li>
-				</ul>
-			<?php } ?>
-			<ul class="nav navbar-nav">
-				<li class="active">
-					<a href="<?= base_url('/') ?>">
-						Halaman Utama
-					</a>
-				</li>
-				<li>
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						categories <i class="icofont icofont-curved-down"></i>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Man line</a></li>
-						<li><a href="#">Woman</a></li>
-					</ul>
-				</li>
-			</ul>
-
-		</div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
-
+		</div>
+	</div>
+	<div class="container">
+		<div class="header-inner">
+			<div class="col-sm-4 col-xs-6 header-left">
+				<div class="shipping">
+					<div class="shipping-img"></div>
+					<div class="shipping-text">082188640489</div>
+				</div>
+			</div>
+			<div class="col-sm-4 col-xs-12 header-middle">
+				<div class="header-middle-top">
+					<div id="logo">
+						<!-- <a href="index.html"><img src="<?= base_url().'asset/image/logo.png' ?>" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a>  -->
+						<h1>Jastip Wanuakku</h1>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 col-xs-12 header-right">
+				<div id="cart" class="btn-group btn-block">
+					<span id="cart-total">
+					<form class="" action="<?= base_url().'keranjang/'.$this->session->uid ?>" method="post">
+						<button type="submit" class="btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button">
+							<span class="cart-title">Keranjang Pesanan</span><br>
+						</button>
+					</form>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<nav id="menu" class="navbar">
+  <div class="nav-inner container">
+    <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
+      <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
+    </div>
+    <div class="navbar-collapse">
+      <ul class="main-navigation">
+        <li><a href="<?= base_url() ?>"   class="parent"  >Halaman Utama</a> </li>
+        <li><a href="about-us.html" >About us</a></li>
+        <li><a href="contact.html" >Contact Us</a> </li>
+      </ul>
+    </div>
+  </div>
 </nav>
-<!-- END: NAVBAR -->

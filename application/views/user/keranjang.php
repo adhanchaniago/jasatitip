@@ -1,135 +1,85 @@
 <div class="container">
+	<ul class="breadcrumb">
+		<li><a href="<?= base_url() ?>"><i class="fa fa-home"></i></a></li>
+		<li><a href="cart.html">Keranjang Pesanan</a></li>
+	</ul>
 	<div class="row">
-		<div class="col-xs-12">
-			<div class="breadcrumb bg-blue">
-				<h4 style="color:#fff;">Keranjang</h4>
-			</div>
+		<div class="col-sm-12" id="content">
+			<h1>Keranjang Pesanan</h1>
+			<form enctype="multipart/form-data" method="post" action="#">
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<td class="text-center">Gambar</td>
+								<td class="text-left">Nama Barang</td>
+								<td class="text-left">Jenis</td>
+								<td class="text-left">Jumlah</td>
+								<td class="text-right">Harga</td>
+								<td class="text-right">Total</td>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ($detailbarang as $brg): ?>
+								<tr>
+									<td class="text-center"><img class="img-thumbnail" width="150px" title="women's clothing"src="<?= base_url().'asset/gambar/'.$brg['gambar'] ?>"></td>
+									<td class="text-left"><a href="<?= base_url().'detail/'.$brg['id_barang'] ?>"><?= $brg['nama_barang'] ?></a></td>
+									<td class="text-left"><?= $brg['jenis_barang'] ?></td>
+									<td class="text-left">
+										<div style="max-width: 200px;" class="input-group btn-block">
+											<span class="input-group-btn">
+												<form class="" action="<?= base_url().'update/'.$brg['id_pesanan'].'/'.$brg['id_barang'] ?>" method="post">
+													<input type="text" class="form-control quantity" size="1" value="<?= $brg['jumlah_pesanan'] ?>" name="jmlh">
+													<button class="btn btn-primary" title="" data-toggle="tooltip" type="submit" data-original-title="Update"><i class="fa fa-refresh"></i></button>
+												</form>
+												<form class="" action="<?= base_url().'delete/'.$brg['id_pesanan'].'/'.$brg['id_barang'] ?>" method="post">
+													<button  class="btn btn-danger" title="" data-toggle="tooltip" type="submit" data-original-title="Remove"><i class="fa fa-times-circle"></i></button>
+												</form>
+											</span>
+										</div	>
+									</td>
+									<td class="text-right"><?= $brg['harga']  ?></td>
+									<td class="text-right"><?= $brg['jumlah_pesanan'] * $brg['harga'] ?></td>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+				<div id="accordion" class="panel-group">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="accordion-toggle" href="#alamat">Alamar Tujuan Pengiriman<i class="fa fa-caret-down"></i></a></h4>
+						</div>
+						<div class="panel-collapse collapse" id="alamat">
+							<div class="panel-body">
+								<p>Masukkan Alamat Tujuan Pengiriman</p>
+								<div class="form-group required">
+									<label for="input-postcode" class="col-sm-2 control-label">Alamat</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="input-postcode" placeholder="Alamat Tujuan" name="alamat">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-sm-4 col-sm-offset-8">
+						<table class="table table-bordered">
+							<tbody>
+								<tr>
+									<td class="text-right"><strong>Total:</strong></td>
+									<td class="text-right">$254.00</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="buttons">
+					<div class="pull-right"><a class="btn btn-primary" href="checkout.html">Pesan</a></div>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
-<div class="container">
-	<!--STEPS -->
-	<div class="row block none-padding-top">
-		<div class="col-xs-12">
-			<ul class="steps row">
-				<li class="active col-xs-12 col-sm-4 col-md-4 col-lg-3">
-					<div class="icon number bg-blue">
-						1
-					</div>
-					<span>
-						Confirm
-					</span>
-					products list
-					<span class="dir-icon hidden-xs">
-						<i class="icofont icofont-stylish-right text-yellow"></i>
-					</span>
-				</li>
-				<li class="hidden-xs col-sm-4 col-md-4 col-lg-3">
-					<div class="icon number bg-grey">
-						2
-					</div>
-					<span>
-						Enter
-					</span>
-					your address
-					<span class="dir-icon">
-						<i class="icofont icofont-stylish-right"></i>
-					</span>
-				</li>
-				<li class="hidden-xs col-lg-3 hidden-sm hidden-md">
-					<div class="icon number bg-grey">
-						3
-					</div>
-					<span>
-						Confirm
-					</span>
-					your order
-				</li>
-			</ul>
-		</div>
-	</div>
-	<!-- END: STEPS -->
-
-	<!--
-	CONTENT
-	=============================================== -->
-	<div class="row block none-padding-top">
-		<div class="col-xs-12">
-
-			<div class="product-list">
-				<div class="wrap bg-white">
-
-					<!-- Header -->
-					<div class="list-header text-uppercase">
-						<div class="product">
-							Product
-						</div>
-
-						<div class="price hidden-xs hidden-sm">
-							Harga
-						</div>
-
-						<div class="qnt hidden-xs hidden-sm">
-							Jumlah
-						</div>
-
-						<div class="total hidden-xs hidden-sm">
-							Total
-						</div>
-
-						<div class="rmv hidden-xs hidden-sm">
-							Hapus
-						</div>
-					</div><!-- / Header -->
-
-					<!-- List body -->
-					<div class="list-body">
-						<!-- Item -->
-						<div class="item">
-							<div class="product">
-								<img src="images/shop/img-01.jpg" alt="">
-								<span class="comp-header st-8 text-uppercase">
-									T-Shirt
-								</span>
-							</div>
-							<div class="price hidden-xs">
-								<span class="price">
-									<i class="icofont icofont-cur-dollar"></i>
-									<span class="prc">
-										<span>257.000</span>
-									</span>
-								</span>
-							</div>
-							<div class="qnt">
-								<span>
-									<span class="input">
-										<input type="text" value="02">
-									</span>
-								</span>
-							</div>
-							<div class="total">
-								<i class="icofont icofont-cur-dollar"></i>
-								<span>250.400</span>
-							</div>
-							<div class="rmv text-center">
-								<button class="remove-btn">
-									<i class="icofont icofont-close-line"></i>
-								</button>
-							</div>
-						</div>
-					</div><!-- / List body -->
-
-					<!-- Footer -->
-					<div class="list-footer bg-blue">
-						<a href="card-page-step-2.html" class="btn btn-default btn-material">
-							<i class="icofont icofont-cart-alt"></i>
-							<span class="body">Make a purchase</span>
-						</a>
-						<a href="#" class="btn btn-text-white">
-							<span class="body">remove selected</span>
-						</a>
-					</div><!-- / Footer -->
-				</div>
-			</div>
-		</div>
-	</div>
