@@ -9,7 +9,15 @@ $route['signin'] = 'home/signin';
 $route['tambah/(:any)'] = 'home/tambah/$1';
 $route['keranjang/(:any)'] = 'home/keranjang/$1';
 $route['lupa_password'] = 'home/forget';
-$route['detail/(:any)'] = 'home/detail/$1';
+$route['daftar_pesanan'] = 'admin/list_pesanan';
+$route['detail_brg/(:any)'] = 'home/detail/$1';
+$route['tambah_stok/(:any)'] = 'admin/tambah/$1';
+$route['tambah/(:any)'] = 'home/tambah/$1';
+$route['simpan_stok/(:any)'] = 'admin/simpan/$1';
+$route['proses/(:any)'] = 'home/proses/$1';
+$route['detail/(:any)'] = 'admin/detail/$1';
+$route['delete/(:num)/(:any)'] = 'home/delete/$1/$2';
+$route['update/(:num)/(:any)'] = 'home/update/$1/$2';
 
 $route['admin'] = 'admin';
 $route['default_controller'] = 'home';

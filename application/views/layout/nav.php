@@ -42,11 +42,15 @@
 			<div class="col-sm-4 col-xs-12 header-right">
 				<div id="cart" class="btn-group btn-block">
 					<span id="cart-total">
+						<?php if (isset($this->session->uid)){ ?>
 					<form class="" action="<?= base_url().'keranjang/'.$this->session->uid ?>" method="post">
 						<button type="submit" class="btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button">
 							<span class="cart-title">Keranjang Pesanan</span><br>
 						</button>
 					</form>
+				<?php }else {?>
+					<a href="<?= base_url().'login' ?>" class="btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button">Keranjang Pesanan</a>
+				<?php } ?>
 					</span>
 				</div>
 			</div>
@@ -61,7 +65,9 @@
     <div class="navbar-collapse">
       <ul class="main-navigation">
         <li><a href="<?= base_url() ?>"   class="parent"  >Halaman Utama</a> </li>
-        <li><a href="about-us.html" >About us</a></li>
+				<?php if ($this->session->status == "admin"): ?>
+					<li><a href="<?= base_url().'daftar_pesanan' ?>" >Daftar Pesanan</a></li>
+				<?php endif; ?>
         <li><a href="contact.html" >Contact Us</a> </li>
       </ul>
     </div>

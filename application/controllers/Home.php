@@ -9,8 +9,12 @@ class Home extends CI_Controller {
 		$this->load->model('model_user');
 	}
 	public function index(){
-		$data['barang']= $this->model_barang->tampilkan();
-		$this->load->template('index',$data);
+		if ($this->session->status == "admin") {
+			redirect('/admin');
+		}else{
+			$data['barang']= $this->model_barang->tampilkan();
+			$this->load->template('index',$data);
+		}
 	}
 	public function login(){
 		$data['failed'] = "0";
@@ -32,11 +36,24 @@ class Home extends CI_Controller {
 		$this->load->template('ganti_password');
 	}
 	public function detail($id){
-		$data['brg'] = $this->model_barang->detail($id);
+		$data['brg'] = $this->model_barang->detailbarang($id);
+		// $data['brga'] = $this->model_barang->detailbrg($id);
 		$this->load->template('detail_barang',$data);
 	}
 	public function logout(){
 		$this->session->sess_destroy();
+		redirect('/');
+	}
+	public function delete($id,$id1){
+		$this->model_barang->delete($id,$id1);
+		redirect('/');
+	}
+	public function update($id,$id1){
+		$this->model_barang->update($id,$id1);
+		redirect('/');
+	}
+	public function proses($id){
+		$this->model_barang->update_pesan($id);
 		redirect('/');
 	}
 	public function signin()
@@ -50,7 +67,7 @@ class Home extends CI_Controller {
 			// simpan data session untuk mengenali user di setiap halaman
 			$this->session->nama = $user['nama'];
 			$this->session->uid = $user['id_user'];
-			$this->session->status = $user['status'];
+			$this->session->status = $user['status_user'];
 			// kembali ke halaman depan
 			if ($this->session->status == "user") {
 				redirect('/');

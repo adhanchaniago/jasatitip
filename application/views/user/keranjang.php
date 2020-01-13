@@ -20,7 +20,11 @@
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach ($detailbarang as $brg): ?>
+							<?php  if (!isset($detailbarang)) { ?>
+								<h1>Tidak ada barang di keranjang</h1>
+							<?php }else {
+								$total =0;
+								foreach ($detailbarang as $brg): ?>
 								<tr>
 									<td class="text-center"><img class="img-thumbnail" width="150px" title="women's clothing"src="<?= base_url().'asset/gambar/'.$brg['gambar'] ?>"></td>
 									<td class="text-left"><a href="<?= base_url().'detail/'.$brg['id_barang'] ?>"><?= $brg['nama_barang'] ?></a></td>
@@ -41,43 +45,50 @@
 									<td class="text-right"><?= $brg['harga']  ?></td>
 									<td class="text-right"><?= $brg['jumlah_pesanan'] * $brg['harga'] ?></td>
 								</tr>
-							<?php endforeach; ?>
+							<?php
+							$total = $total + $brg['jumlah_pesanan'] * $brg['harga'] ;
+						endforeach; }?>
 						</tbody>
 					</table>
 				</div>
-				<div id="accordion" class="panel-group">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="accordion-toggle" href="#alamat">Alamar Tujuan Pengiriman<i class="fa fa-caret-down"></i></a></h4>
-						</div>
-						<div class="panel-collapse collapse" id="alamat">
-							<div class="panel-body">
-								<p>Masukkan Alamat Tujuan Pengiriman</p>
-								<div class="form-group required">
-									<label for="input-postcode" class="col-sm-2 control-label">Alamat</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" id="input-postcode" placeholder="Alamat Tujuan" name="alamat">
+				<form class="" action="<?= base_url().'proses/'. $this->session->uid?>" method="post">
+					<div id="accordion" class="panel-group">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="accordion-toggle" href="#alamat">Alamar Tujuan Pengiriman<i class="fa fa-caret-down"></i></a></h4>
+							</div>
+							<div class="panel-collapse collapse" id="alamat">
+								<div class="panel-body">
+									<p>Masukkan Alamat Tujuan Pengiriman</p>
+									<div class="form-group required">
+										<label for="input-postcode" class="col-sm-2 control-label">Alamat</label>
+										<div class="col-sm-10">
+											<input type="hidden" name="total" value="<?= $total ?>">
+											<input type="text" class="form-control" id="input-postcode" placeholder="Alamat Tujuan" name="alamat">
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<br>
-				<div class="row">
-					<div class="col-sm-4 col-sm-offset-8">
-						<table class="table table-bordered">
-							<tbody>
-								<tr>
-									<td class="text-right"><strong>Total:</strong></td>
-									<td class="text-right">$254.00</td>
-								</tr>
-							</tbody>
-						</table>
+					<br>
+					<div class="row">
+						<div class="col-sm-4 col-sm-offset-8">
+							<table class="table table-bordered">
+								<tbody>
+									<tr>
+										<td class="text-right"><strong>Total:</strong></td>
+										<td class="text-right"><?= $total ?></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
-				</div>
-				<div class="buttons">
-					<div class="pull-right"><a class="btn btn-primary" href="checkout.html">Pesan</a></div>
+					<div class="buttons">
+						<div class="pull-right">
+							<button class="btn btn-primary" name="submit" >Pesan</button>
+						</div>
+					</form>
 				</div>
 			</form>
 		</div>

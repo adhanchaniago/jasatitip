@@ -12,7 +12,7 @@ class Model_user extends CI_Model {
       'password' => md5($this->input->post('password')),
       'alamat' => $this->input->post('alamat'),
       'telepon' => $this->input->post('telepon'),
-      'status' => "user"
+      'status_user' => "user"
     ];
     $this->db->insert('users', $data);
 	}
