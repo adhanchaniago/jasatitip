@@ -42,8 +42,8 @@
 											</span>
 										</div	>
 									</td>
-									<td class="text-right"><?= $brg['harga']  ?></td>
-									<td class="text-right"><?= $brg['jumlah_pesanan'] * $brg['harga'] ?></td>
+									<td class="text-right">Rp.<?php echo number_format($brg['harga'], 0, ".", ".") ?></td>
+									<td class="text-right">Rp.<?php echo number_format($brg['jumlah_pesanan'] * $brg['harga'], 0, ".", ".") ?></td>
 								</tr>
 							<?php
 							$total = $total + $brg['jumlah_pesanan'] * $brg['harga'] ;
@@ -78,7 +78,7 @@
 								<tbody>
 									<tr>
 										<td class="text-right"><strong>Total:</strong></td>
-										<td class="text-right"><?= $total ?></td>
+										<td class="text-right">Rp.<?php echo number_format($total, 0, ".", ".") ?></td>
 									</tr>
 								</tbody>
 							</table>

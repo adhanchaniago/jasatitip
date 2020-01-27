@@ -8,17 +8,29 @@ class Model_barang extends CI_Model {
 		$query = $this->db->query("SELECT * from data_barang");
 		return $query->result_array();
 	}
-	public function listbrg(){
-		$query = $this->db->query("SELECT * from data_barang");
+	public function tampil_brg($limit,$start){
+		$query = $this->db->query("SELECT * from data_barang limit $start, $limit");
 		return $query->result_array();
 	}
 	public function pesanan(){
 		$query = $this->db->query("SELECT * from pesanan inner join users using(id_user)");
 		return $query->result_array();
 	}
+	public function detail_pesanan($id){
+		$query = $this->db->query("SELECT * from pesanan inner join users using(id_user) where id_pesanan='".$id."'");
+		return $query->row_array();
+	}
+	public function detail_brg_pesanan($id){
+		$query = $this->db->query("SELECT * from detail_pesanan inner join data_barang using(id_barang) where id_pesanan='".$id."'");
+		return $query->result_array();
+	}
 	public function detail($id){
 		$query = $this->db->query("SELECT * from pesanan inner join users using(id_user) where id_pesanan='".$id."'");
 		return $query->row_array();
+	}
+	public function pesanan_user($id){
+		$query = $this->db->query("SELECT * from pesanan where id_user='".$id."' and alamat_tujuan is not null");
+		return $query->result_array();
 	}
 	public function detailBarang($id){
 		$query = $this->db->query("SELECT * from data_barang where id_barang='".$id."'");
@@ -52,12 +64,28 @@ class Model_barang extends CI_Model {
 		$this->db->where('id_user', $id);
 		$this->db->update('pesanan',$data);
 	}
+	public function proses_pesanan($id){
+		$data = array ('tanggal_kirim' => $this->input->post('tgl_kirim'),'tanggal_tiba' => $this->input->post('tgl_tiba') , 'status' =>"2");
+		$this->db->where('id_pesanan', $id);
+		$this->db->update('pesanan',$data);
+	}
 	public function detailkeranjang	($id){
 		$query = $this->db->query("SELECT * FROM pesanan where id_user='" . $id. "' and status ='0'");
 		$row = $query->row_array();
 		$data = $row['id_pesanan'];
 		$query = $this->db->query("SELECT * from detail_pesanan inner join data_barang using(id_barang) where id_pesanan='".$data."'");
 		return $query->result_array();
+	}
+	public function simpan_brg($file){
+		$data=[
+			'nama_barang' => $this->input->post('nama'),
+			'jenis_barang' => $this->input->post('jenis'),
+			'harga' => $this->input->post('harga'),
+			'jumlah' => $this->input->post('jumlah'),
+			'deskripsi' => $this->input->post('deskripsi'),
+			'gambar' => $file['file_name']
+		];
+		$this->db->insert('data_barang',$data);
 	}
 	public function tambah($id){
 		$user = $this->session->uid;
@@ -84,11 +112,7 @@ class Model_barang extends CI_Model {
 
 	}
 	public function simpan($id){
-		$query = $this->db->query("SELECT * FROM data_barang where id_barang='" .$id. "'");
-		$row = $query->row();
-		$jumlah = $row->jumlah;
-		$total = $jumlah + $this->input->post('jumlah');
-		$data = array ('harga' => $this->input->post('harga'), 'jumlah' => $total);
+		$data = array ('harga' => $this->input->post('harga'), 'jumlah' => $this->input->post('jumlah'), 'deskripsi' => $this->input->post('deskripsi'));
 		$this->db->where('id_barang', $id);
 		$this->db->update( 'data_barang', $data );
 	}

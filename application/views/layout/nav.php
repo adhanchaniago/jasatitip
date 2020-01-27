@@ -11,9 +11,9 @@
 										<?php if (isset($this->session->uid)){ ?>
 											<li><a href="<?= base_url().'logout' ?>">Keluar Akun</a></li>
 										<?php }else {?>
-										<li><a href="<?= base_url().'register' ?>">Register</a></li>
-										<li><a href="<?= base_url().'login' ?>">Login</a></li>
-									<?php } ?>
+											<li><a href="<?= base_url().'register' ?>">Register</a></li>
+											<li><a href="<?= base_url().'login' ?>">Login</a></li>
+										<?php } ?>
 									</ul>
 								</li>
 							</ul>
@@ -28,7 +28,7 @@
 			<div class="col-sm-4 col-xs-6 header-left">
 				<div class="shipping">
 					<div class="shipping-img"></div>
-					<div class="shipping-text">082188640489</div>
+					<div class="shipping-text" ><i class="fa fa-mobile fa-3x"></i>082188640489</div>
 				</div>
 			</div>
 			<div class="col-sm-4 col-xs-12 header-middle">
@@ -40,36 +40,40 @@
 				</div>
 			</div>
 			<div class="col-sm-4 col-xs-12 header-right">
-				<div id="cart" class="btn-group btn-block">
-					<span id="cart-total">
-						<?php if (isset($this->session->uid)){ ?>
-					<form class="" action="<?= base_url().'keranjang/'.$this->session->uid ?>" method="post">
-						<button type="submit" class="btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button">
-							<span class="cart-title">Keranjang Pesanan</span><br>
-						</button>
-					</form>
-				<?php }else {?>
-					<a href="<?= base_url().'login' ?>" class="btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button">Keranjang Pesanan</a>
-				<?php } ?>
-					</span>
-				</div>
+				<?php if ($this->session->status == "user"){?>
+					<div id="cart" class="btn-group btn-block">
+						<span id="cart-total">
+							<?php if (isset($this->session->uid)){ ?>
+								<form class="" action="<?= base_url().'keranjang/'.$this->session->uid ?>" method="post">
+									<button type="submit" class="btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button">
+										<span class="cart-title">Keranjang Pesanan</span><br>
+									</button>
+								</form>
+							<?php }else {?>
+								<a href="<?= base_url().'login' ?>" class="btn-inverse btn-block btn-lg dropdown-toggle cart-dropdown-button">Keranjang Pesanan</a>
+							<?php }?>
+						</span>
+					</div>
+				<?php }?>
 			</div>
 		</div>
 	</div>
 </header>
 <nav id="menu" class="navbar">
-  <div class="nav-inner container">
-    <div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
-      <button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
-    </div>
-    <div class="navbar-collapse">
-      <ul class="main-navigation">
-        <li><a href="<?= base_url() ?>"   class="parent"  >Halaman Utama</a> </li>
-				<?php if ($this->session->status == "admin"): ?>
+	<div class="nav-inner container">
+		<div class="navbar-header"><span id="category" class="visible-xs">Categories</span>
+			<button type="button" class="btn btn-navbar navbar-toggle" ><i class="fa fa-bars"></i></button>
+		</div>
+		<div class="navbar-collapse">
+			<ul class="main-navigation">
+				<li><a href="<?= base_url() ?>"   class="parent"  >Halaman Utama</a> </li>
+				<?php if ($this->session->status == "admin"){ ?>
 					<li><a href="<?= base_url().'daftar_pesanan' ?>" >Daftar Pesanan</a></li>
-				<?php endif; ?>
-        <li><a href="contact.html" >Contact Us</a> </li>
-      </ul>
-    </div>
-  </div>
+					<li><a href="<?= base_url().'tambah_produk' ?>" >Tambah Produk</a> </li>
+				<?php }else{ ?>
+					<li><a href="<?= base_url().'informasi/'.$this->session->uid ?>" >Informasi Pesanan</a> </li>
+				<?php } ?>
+			</ul>
+		</div>
+	</div>
 </nav>

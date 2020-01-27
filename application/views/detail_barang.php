@@ -21,44 +21,53 @@
         <hr>
         <ul class="list-unstyled product_info">
           <li>
+            <?php if ($pesan == '1'){ ?>
+              <div class="alert alert-danger" role="alert">
+                Stok Tidak Cukup !!
+              </div>
+            <?php }?>
             <label>Persediaan:</label>
-            <span> <?= $brg['jumlah'] ?></span></li>
+            <?php if (isset($brg['jumlah'])) { ?>
+              <span> <?= $brg['jumlah'] ?></span></li>
+            <?php }else {?>
+              <span class="stok">Stok habis</span></li>
+            <?php } ?>
           </ul>
           <hr>
-            <div id="product">
-              <?php if (isset($this->session->uid)){ ?>
-                <form class="" action="<?= base_url().'tambah/'.$brg['id_barang'] ?>" method="post">
-                  <div class="form-group">
-                    <label class="control-label qty-label" for="input-quantity">Jumlah</label>
-                    <input type="hidden" name="harga" value="<?=$brg['harga'] ?>">
-                    <input type="number" name="jumlah" value="1" id="input-quantity" class="form-control productpage-qty" />
-                    <div class="btn-group">
-                      <button type="submit" class="btn btn-primary btn-lg btn-block addtocart">Tambah Ke keranjang</button>
-                    </div>
+          <div id="product">
+            <?php if (isset($this->session->uid)){ ?>
+              <form class="" action="<?= base_url().'tambah/'.$brg['id_barang'] ?>" method="post">
+                <div class="form-group">
+                  <label class="control-label qty-label" for="input-quantity">Jumlah</label>
+                  <input type="hidden" name="harga" value="<?=$brg['harga'] ?>">
+                  <input type="number" name="jumlah" value="1" id="input-quantity" class="form-control productpage-qty" />
+                  <div class="btn-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block addtocart">Tambah Ke keranjang</button>
                   </div>
-                </form>
-              <?php }else {?>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary btn-lg btn-block addtocart" onclick="location.href='<?= base_url().'login' ?>'">Login</button>
                 </div>
-              <?php } ?>
-            </div>
+              </form>
+            <?php }else {?>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-lg btn-block addtocart" onclick="location.href='<?= base_url().'login' ?>'">Login</button>
+              </div>
+            <?php } ?>
           </div>
         </div>
-        <div class="productinfo-tab">
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab-description" data-toggle="tab">Deskripsi</a></li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="tab-description">
-              <div class="cpt_product_description ">
-                <div>
-                  <p><?= $brg['deskripsi'] ?></p>
-                </div>
+      </div>
+      <div class="productinfo-tab">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab-description" data-toggle="tab">Deskripsi</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab-description">
+            <div class="cpt_product_description ">
+              <div>
+                <p><?= $brg['deskripsi'] ?></p>
               </div>
-              <!-- cpt_container_end -->
             </div>
+            <!-- cpt_container_end -->
           </div>
         </div>
       </div>
     </div>
+  </div>

@@ -6,10 +6,7 @@
 					<h5>Social</h5>
 					<ul>
 						<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
 						<li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li class="gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-						<li class="youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
 					</ul>
 				</div>
 			</div>
@@ -29,8 +26,8 @@
 							<li><i class="fa fa-map-marker"></i><span class="location2"> Warehouse & Offices,<br>
 								12345 Street name, California<br>
 								USA</span></li>
-								<li><i class="fa fa-envelope"></i><span class="mail2"><a href="#">info@localhost.com</a></span></li>
-								<li><i class="fa fa-mobile"></i><span class="phone2">+62 0987-654-321</span></li>
+								<li><i class="fa fa-envelope"></i><span class="mail2">info@localhost.com</span></li>
+								<li><i class="fa fa-mobile"></i><span class="phone2">+6282188640489</span></li>
 							</ul>
 						</div>
 					</div>
@@ -39,8 +36,6 @@
 		</div>
 		<a id="scrollup">Scroll</a> </footer>
 		<script src="javascript/parally.js"></script>
-		<script>
-		$('.parallax').parally({offset: -40});
-	</script>
-</body>
-</html>
+		<script>$('.parallax').parally({offset: -40});</script>
+	</body>
+	</html>

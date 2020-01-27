@@ -9,17 +9,23 @@
 				<h3>Id Pesanan</h3>
 				<h3>Nama Pemesan</h3>
 				<h3>Alamat Tujuan</h3>
+				<h3>Tanggal Pesanan</h3>
+				<h3>Tanggal Kirim</h3>
+				<h3>Tanggal Tiba</h3>
 				<h3>Status</h3>
 			</div>
 			<div class="col-md-6">
 				<h3>: <?= $pesanan['id_pesanan'] ?></h3>
 				<h3>: <?= $pesanan['nama'] ?></h3>
 				<h3>: <?= $pesanan['alamat_tujuan'] ?></h3>
-				<h3>: <?php if ($pesanan['status'] = '1'){ ?>
+				<h3>: <?php echo tgl_indo($pesanan['tanggal_pesanan']); ?></h3>
+				<h3>: <?php echo tgl_indo($pesanan['tanggal_kirim']); ?></h3>
+				<h3>: <?php echo tgl_indo($pesanan['tanggal_tiba']); ?></h3>
+				<h3>: <?php if ($pesanan['status'] == '1'){ ?>
 					Sedang Proses
-				<?php }elseif($pesanan['status'] = '2'){?>
+				<?php }elseif($pesanan['status'] == '2'){?>
 					Proses Pengiriman
-				<?php }elseif($pesanan['status'] = '3'){ ?>
+				<?php }elseif($pesanan['status'] == '3'){ ?>
 					Barang Sudah Tiba
 				<?php } ?>
 			</h3>
@@ -48,23 +54,28 @@
 				<?php endforeach; ?>
 			</tbody>
 		</table>
-		<form class="" action="<?= base_url().'proses_pesanan/'.$pesanan['id_pesanan'] ?>" method="post">
-			<div class="row">
-				<div class="form-group">
-					<label for="input-jenis" class="col-sm-2 control-label">Tanggal Kirim</label>
-					<input type="date" name="tgl_kirim" value="" required>
-				</div>
-			</div>
-			<div class="row">
-				<div class="form-group">
-					<label for="input-jenis" class="col-sm-2 control-label">Tanggal Tiba</label>
-					<input type="date" name="tgl_tiba" value="" required>
-				</div>
-			</div>
-			<div class="form-group">
-				<input type="submit" class="btn btn-primary"  value="Simpan">
-			</div>
-		</form>
 	</div>
 </div>
 </div>
+<?php
+	function tgl_indo($tanggal){
+		$bulan = array (
+			1 =>   'Januari',
+			'Februari',
+			'Maret',
+			'April',
+			'Mei',
+			'Juni',
+			'Juli',
+			'Agustus',
+			'September',
+			'Oktober',
+			'November',
+			'Desember'
+		);
+		$pecahkan = explode('-', $tanggal);
+		// variabel pecahkan 0 = tanggal
+		// variabel pecahkan 1 = bulan
+		// variabel pecahkan 2 = tahun
+		return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+	} ?>
