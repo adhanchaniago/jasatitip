@@ -48,23 +48,25 @@
 				<?php endforeach; ?>
 			</tbody>
 		</table>
-		<form class="" action="<?= base_url().'proses_pesanan/'.$pesanan['id_pesanan'] ?>" method="post">
-			<div class="row">
-				<div class="form-group">
-					<label for="input-jenis" class="col-sm-2 control-label">Tanggal Kirim</label>
-					<input type="date" name="tgl_kirim" value="" required>
+		<?php if (!isset($pesanan['tanggal_kirim'])): ?>
+			<form class="" action="<?= base_url().'proses_pesanan/'.$pesanan['id_pesanan'] ?>" method="post">
+				<div class="row">
+					<div class="form-group">
+						<label for="input-jenis" class="col-sm-2 control-label">Tanggal Kirim</label>
+						<input type="date" name="tgl_kirim" value="" required>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="form-group">
-					<label for="input-jenis" class="col-sm-2 control-label">Tanggal Tiba</label>
-					<input type="date" name="tgl_tiba" value="" required>
+				<div class="row">
+					<div class="form-group">
+						<label for="input-jenis" class="col-sm-2 control-label">Tanggal Tiba</label>
+						<input type="date" name="tgl_tiba" value="" required>
+					</div>
 				</div>
-			</div>
-			<div class="form-group">
-				<input type="submit" class="btn btn-primary"  value="Simpan">
-			</div>
-		</form>
+				<div class="form-group">
+					<input type="submit" class="btn btn-primary"  value="Simpan">
+				</div>
+			</form>
+		<?php endif; ?>
 	</div>
 </div>
 </div>

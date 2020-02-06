@@ -20,7 +20,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<?php  if (!isset($detailbarang)) { ?>
+							<?php
+							if (!isset($detailbarang)) { ?>
 								<h1>Tidak ada barang di keranjang</h1>
 							<?php }else {
 								$total =0;
@@ -32,18 +33,22 @@
 									<td class="text-left">
 										<div style="max-width: 200px;" class="input-group btn-block">
 											<span class="input-group-btn">
-												<form class="" action="<?= base_url().'update/'.$brg['id_pesanan'].'/'.$brg['id_barang'] ?>" method="post">
-													<input type="text" class="form-control quantity" size="1" value="<?= $brg['jumlah_pesanan'] ?>" name="jmlh">
-													<button class="btn btn-primary" title="" data-toggle="tooltip" type="submit" data-original-title="Update"><i class="fa fa-refresh"></i></button>
+												<form class="" action="index.html" method="post">
 												</form>
-												<form class="" action="<?= base_url().'delete/'.$brg['id_pesanan'].'/'.$brg['id_barang'] ?>" method="post">
-													<button  class="btn btn-danger" title="" data-toggle="tooltip" type="submit" data-original-title="Remove"><i class="fa fa-times-circle"></i></button>
+												<form id="1"action="<?= base_url().'update/'.$brg['id_pesanan'].'/'.$brg['id_barang'] ?>" method="post">
+													<input type="text" class="form-control quantity" size="1" value="<?= $brg['jumlah_pesanan'] ?>" name="jmlh">
+													<button class="btn btn-primary" data-toggle="tooltip" type="submit" data-original-title="Update"><i class="fa fa-refresh"></i></button>
 												</form>
 											</span>
-										</div	>
+											<span class="input-group-btn">
+												<form id="2" action="<?= base_url().'delete/'.$brg['id_pesanan'].'/'.$brg['id_barang'] ?>" method="post">
+													<button  class="btn btn-danger" data-toggle="tooltip" type="submit" data-original-title="Remove"><i class="fa fa-times-circle"></i></button>
+												</form>
+											</span>
+										</div>
 									</td>
-									<td class="text-right">Rp.<?php echo number_format($brg['harga'], 0, ".", ".") ?></td>
-									<td class="text-right">Rp.<?php echo number_format($brg['jumlah_pesanan'] * $brg['harga'], 0, ".", ".") ?></td>
+									<td class="text-right">Rp.<?= number_format($brg['harga'], 0, ".", ".") ?></td>
+									<td class="text-right">Rp.<?= number_format($brg['jumlah_pesanan'] * $brg['harga'], 0, ".", ".") ?></td>
 								</tr>
 							<?php
 							$total = $total + $brg['jumlah_pesanan'] * $brg['harga'] ;
@@ -51,7 +56,7 @@
 						</tbody>
 					</table>
 				</div>
-				<form class="" action="<?= base_url().'proses/'. $this->session->uid?>" method="post">
+				<form class="" action="<?= base_url().'proses/'. $barang['id_pesanan']?>" method="post">
 					<div id="accordion" class="panel-group">
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -64,7 +69,7 @@
 										<label for="input-postcode" class="col-sm-2 control-label">Alamat</label>
 										<div class="col-sm-10">
 											<input type="hidden" name="total" value="<?= $total ?>">
-											<input type="text" class="form-control" id="input-postcode" placeholder="Alamat Tujuan" name="alamat">
+											<input type="text" class="form-control" id="input-postcode" placeholder="Alamat Tujuan" name="alamat" required>
 										</div>
 									</div>
 								</div>

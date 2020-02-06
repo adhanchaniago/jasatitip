@@ -40,10 +40,6 @@ class Model_barang extends CI_Model {
 		$query = $this->db->query("SELECT * from detail_pesanan inner join data_barang using(id_barang) where id_pesanan='".$id."'");
 		return $query->result_array();
 	}
-	public function keranjang	($id){
-		$query = $this->db->query("SELECT * from pesanan where id_user='".$id."'");
-		return $query->row_array();
-	}
 	public function brg	($id){
 		$query = $this->db->query("SELECT * from data_barang where id_barang='".$id."'");
 		return $query->row_array();
@@ -61,13 +57,18 @@ class Model_barang extends CI_Model {
 	}
 	public function update_pesan($id){
 		$data = array ('alamat_tujuan' => $this->input->post('alamat'),'total' => $this->input->post('total') , 'status' =>"1");
-		$this->db->where('id_user', $id);
+		$this->db->where('id_pesanan', $id);
 		$this->db->update('pesanan',$data);
 	}
 	public function proses_pesanan($id){
-		$data = array ('tanggal_kirim' => $this->input->post('tgl_kirim'),'tanggal_tiba' => $this->input->post('tgl_tiba') , 'status' =>"2");
+		$st = '2';
+		$data = array ('tanggal_kirim' => $this->input->post('tgl_kirim'),'tanggal_tiba' => $this->input->post('tgl_tiba') , 'status' =>$st);
 		$this->db->where('id_pesanan', $id);
 		$this->db->update('pesanan',$data);
+	}
+	public function keranjang	($id){
+		$query = $this->db->query("SELECT * from pesanan where id_user='".$id."' and status='0'");
+		return $query->row_array();
 	}
 	public function detailkeranjang	($id){
 		$query = $this->db->query("SELECT * FROM pesanan where id_user='" . $id. "' and status ='0'");
@@ -91,10 +92,11 @@ class Model_barang extends CI_Model {
 		$user = $this->session->uid;
 		$data=[
 			'id_user' => $this->session->uid,
+			'tanggal_pesanan' => date('Y-m-d'),
 			'status' =>'0'
 		];
 		$this->db->insert('pesanan', $data);
-		$query = $this->db->query("SELECT * FROM pesanan where id_user='" . $user . "'");
+		$query = $this->db->query("SELECT * FROM pesanan where id_user='" . $user . "' and status='0'");
 		$row = $query->row();
 		$data1 = $row->id_pesanan;
 		$total = $row->total;

@@ -19,8 +19,17 @@
 				<h3>: <?= $pesanan['nama'] ?></h3>
 				<h3>: <?= $pesanan['alamat_tujuan'] ?></h3>
 				<h3>: <?php echo tgl_indo($pesanan['tanggal_pesanan']); ?></h3>
-				<h3>: <?php echo tgl_indo($pesanan['tanggal_kirim']); ?></h3>
-				<h3>: <?php echo tgl_indo($pesanan['tanggal_tiba']); ?></h3>
+				<h3>:
+					<?php if (isset($pesanan['tanggal_kirim'])):
+						echo tgl_indo($pesanan['tanggal_kirim']);
+					 endif; ?>
+				</h3>
+				<h3>:
+					<?php if (isset($pesanan['tanggal_tiba'])):
+						echo tgl_indo($pesanan['tanggal_tiba']);
+					endif; ?>
+				</h3>
+
 				<h3>: <?php if ($pesanan['status'] == '1'){ ?>
 					Sedang Proses
 				<?php }elseif($pesanan['status'] == '2'){?>
