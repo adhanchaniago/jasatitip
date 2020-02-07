@@ -3,26 +3,35 @@
 		<li><a href="<?= base_url() ?>"><i class="fa fa-home"></i></a></li>
 		<li><a href="">Detail Pesanan</a></li>
 	</ul>
-	<div id="content" class="col-sm-10">
+	<div id="content" class="col-sm-12">
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<h3>Id Pesanan</h3>
 				<h3>Nama Pemesan</h3>
 				<h3>Alamat Tujuan</h3>
 				<h3>Status</h3>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<h3>: <?= $pesanan['id_pesanan'] ?></h3>
 				<h3>: <?= $pesanan['nama'] ?></h3>
 				<h3>: <?= $pesanan['alamat_tujuan'] ?></h3>
-				<h3>: <?php if ($pesanan['status'] = '1'){ ?>
+				<h3>: <?php if ($pesanan['status'] == '1'){ ?>
 					Sedang Proses
-				<?php }elseif($pesanan['status'] = '2'){?>
+				<?php }elseif($pesanan['status'] == '2'){?>
 					Proses Pengiriman
-				<?php }elseif($pesanan['status'] = '3'){ ?>
+				<?php }elseif($pesanan['status'] == '3'){ ?>
 					Barang Sudah Tiba
 				<?php } ?>
 			</h3>
+		</div>
+		<div class="col-md-4">
+			<?php if ($pesanan['status'] == '2'): ?>
+				<form class="" action="<?= base_url().'konfirmasi'?>" method="post">
+					<h3>Konfirmasi Pesanan Sudah Tiba</h3>
+					<input type="hidden" name="id_pesanan" value="<?= $pesanan['id_pesanan'] ?>">
+					<button type="submit" name="button">Konfirmasi Pesanan</button>
+				</form>
+			<?php endif; ?>
 		</div>
 	</div>
 	<div class="col-md-10 mt-5">

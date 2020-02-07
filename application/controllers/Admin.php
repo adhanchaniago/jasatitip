@@ -23,7 +23,11 @@ class Admin extends CI_Controller {
 	}
 	public function proses_pesanan($id){
 		$this->model_barang->proses_pesanan($id);
-		redirect('/');
+		redirect('/daftar_pesanan');
+	}
+	public function konfirmasi(){
+		$this->model_barang->konfirmasi();
+		redirect('/daftar_pesanan');
 	}
 	public function simpan_brg(){
 		$config['upload_path'] = 'asset/gambar/';

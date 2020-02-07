@@ -25,6 +25,7 @@ $route['simpan_stok/(:any)'] = 'admin/simpan/$1';
 $route['detail/(:any)'] = 'admin/detail/$1';
 $route['proses_pesanan/(:any)'] = 'admin/proses_pesanan/$1';
 $route['admin'] = 'admin';
+$route['konfirmasi'] = 'admin/konfirmasi';
 
 $route['default_controller'] = 'home';
 $route['404_override'] = '';

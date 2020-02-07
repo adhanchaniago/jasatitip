@@ -65,6 +65,21 @@ class Model_barang extends CI_Model {
 		$data = array ('tanggal_kirim' => $this->input->post('tgl_kirim'),'tanggal_tiba' => $this->input->post('tgl_tiba') , 'status' =>$st);
 		$this->db->where('id_pesanan', $id);
 		$this->db->update('pesanan',$data);
+		$query = $this->db->query("SELECT count(*) FROM detail_pesanan where id_pesanan='" . $id. "'");
+		$rowz = $query->num_fields();
+		for ($i=1; $i <= $rowz; $i++) {
+			$query = $this->db->query("SELECT * from detail_pesanan where id_pesanan='".$id."'");
+			$row = $query->row_array();
+			$jumlah = $row['jumlah_pesanan'];
+			$id_barang = $row['id_barang'];
+			$querys = $this->db->query("SELECT * from data_barang where id_barang='".$id_barang."'");
+			$rows = $querys->row_array();
+			$jmlh = $rows['jumlah'];
+			$total = $jmlh-$jumlah;
+			$data = array('jumlah' => $total);
+			$this->db->where('id_barang', $id_barang);
+			$this->db->update('data_barang', $data);
+		}
 	}
 	public function keranjang	($id){
 		$query = $this->db->query("SELECT * from pesanan where id_user='".$id."' and status='0'");
@@ -117,5 +132,11 @@ class Model_barang extends CI_Model {
 		$data = array ('harga' => $this->input->post('harga'), 'jumlah' => $this->input->post('jumlah'), 'deskripsi' => $this->input->post('deskripsi'));
 		$this->db->where('id_barang', $id);
 		$this->db->update( 'data_barang', $data );
+	}
+	public function konfirmasi(){
+		$id = $this->input->post('id_pesanan');
+		$data = array ('status' => '3');
+		$this->db->where('id_pesanan', $id);
+		$this->db->update( 'pesanan', $data );
 	}
 }
